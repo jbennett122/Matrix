@@ -51,6 +51,9 @@ case 2:
 
 
 srand (time(NULL));
+
+
+x=new double [n];
 //initial guess
 for(i=0;i<n;i++){
 
@@ -140,23 +143,17 @@ for (i=0; i < n; i++)
 			cout<<"|"<<endl;
 }
 
-
+old = new double [n];
 
 count=0;
 do{
 
+	for(i=0;i<n;i++){
 
+		old[i]=x[i];
 
+			}
 
-cout<<"\nold: "<<count<<endl;
-	for(i=0;i<n;i++)
-	{
-					cout<<"|";
-						cout<<" "<<setw(8)<<old[i]<<" ";
-					cout<<"|"<<endl;
-	}
-
-cout<<endl;
 //go row by row do matrix mult and matrix subtraction
 	for (i=0; i < n; i++)
 		{
@@ -182,13 +179,13 @@ cout<<endl;
 
 		}
 
-cout<<"old"<<endl;
+cout<<"\nold"<<endl;
 	for(i=0;i<n;i++){
 						cout<<"|";
 							cout<<" "<<setw(8)<<old[i]<<" ";
 						cout<<"|"<<endl;
 		}
-	cout<<"new"<<endl;
+	cout<<"\nnew"<<endl;
 	for(i=0;i<n;i++){
 						cout<<"|";
 							cout<<" "<<setw(8)<<x[i]<<" ";
@@ -202,7 +199,7 @@ cout<<"old"<<endl;
 count++;
 }while(count<2);
 
-
+cout<<"\nfinal"<<endl;
 for(i=0;i<n;i++){
 					cout<<"|";
 						cout<<" "<<setw(8)<<x[i]<<" ";
