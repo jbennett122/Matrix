@@ -15,25 +15,15 @@
 #include <fstream>
 #include <istream>
 #include <string>
-
+#include "headers/jacobi.h"
 
 
 using namespace std;
 
 int main(int argc,char* argv[]) {
 
+ 	 int n,m,choice;
 
-	// brackets(argc,argv);
-
-	//double pointer pointer
-	 double **A;
-	 double **B;
-	 double **X;
-	//rows and columns of the matrix
-	 double nums;
-	 int n,m;
-
-	 char matrix;
 	 string test;
 
 	 //stream variable
@@ -66,88 +56,24 @@ int main(int argc,char* argv[]) {
 
 		fs2.open(argv[2]);
 
+cout<<"chose solver"<<endl;
+cout<<"1. Jacobi\n2. Gauss Seidel\n3. SOR\n4. Gaussian Elimination\n5. L-U\n6. Bi-section\n7. Regula Falsi\n8. Newtons"<<endl;
+cin>>choice;
+switch(choice){
+
+case 1 :
+	cout<<"jacobi"<<endl;
+
+	jacobi(argc,argv);
+
+	break;
+
+case 2:
+	cout<<"GS"<<endl;
+		break;
 
 
-
-//	getline(fs,test);
-
-	//cout<<test<<endl;
-
-	//basic matrix test
-		//rows=3;
-		//cols=3;
-
-	fs.clear();
-/*	char c;
-
-		fs>>c;
-		cout<<"Matrix "<<c<<endl;
-
-*/
-	fs>>n>>m;
-
-	//cout<<"rows"<<rows<<endl;
-	//cout<<"cols"<<cols<<endl;
-
-int count=0;
-
-//create matrix and assign   values
-	A = new double *[n];
-	for (int i=0; i < n; i++)
-	{
-		A[i]=new double [m];
-
-		for(int j=0;j<m;j++){
-			fs>>nums;
-
-			A[i][j]=nums;
-			count++;
-			//x[i][j]=rand()%100;
-
-		}
-	}
-
-	for (int i=0; i < n; i++)
-		{
-		cout<<"|";
-			for(int j=0;j<m;j++){
-
-			  cout<<" "<<setw(2)<<A[i][j]<<" ";
-			}
-		cout<<"|"<<endl;
-		}
-
-	cout<<count<<endl;
-
-	fs>>n;
-/*
-		B = new double *[n];
-			for (int i=0; i < n; i++)
-			{
-				B[i]=new double [m];
-
-				for(int j=0;j<m;j++){
-					fs2>>nums;
-
-					B[i][j]=nums;
-
-					//x[i][j]=rand()%100;
-
-				}
-			}
-
-			for (int i=0; i < n; i++)
-				{
-				cout<<"|";
-					for(int j=0;j<m;j++){
-
-					  cout<<" "<<setw(2)<<B[i][j]<<" ";
-					}
-				cout<<"|"<<endl;
-				}
-
-*/
-//pass(A,B,X,n,m);
+}
 
 
 	return 0;
