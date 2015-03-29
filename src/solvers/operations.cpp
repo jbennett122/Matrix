@@ -53,8 +53,8 @@ float tolCheck(float *x,float *old,int n){
 		sum=sum + diff[i];
 
 	}
-	cout<<abs(sum)<<endl;
-	tolerance = sqrt (abs(sum));
+
+	tolerance = sqrt (pow(sum,2));
 
 //return diff;
 

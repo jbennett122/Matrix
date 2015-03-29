@@ -157,21 +157,21 @@ do{
 			sum =0;
 			for(j=0;j<m;j++){
 
-				if(i!=j){
+				//if(i!=j){
 						//matrixMult(C, x, n,  m);
 
-						//cout<<"Cx "<<A[i][j]<<" * " <<x[j]<<endl;
+				//		cout<<"Cx "<<C[i][j]<<" * " <<x[j]<<endl;
 
-				sum = sum + (A[i][j] * x[j]);
-						//cout<<"sum is: "<<sum<<endl;
+				sum = sum + (C[i][j] * x[j]);
 
-						}
 
+				//}
+				//cout<<"sum is: "<<sum<<endl;
 							}
 
 						//new x vector
 						x[i]=(b[i]-sum)/(A[i][i]);
-						//cout<<sum<<endl;
+						cout<<x[i]<<endl;
 
 		}
 /*
