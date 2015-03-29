@@ -11,5 +11,5 @@
 
 float *matrixMult(float *C,float *x,int n,int m);
 
-double *tolCheck(double *x,double *old,int n);
+float tolCheck(float *x,float *old,int n);
 #endif /* OPERATIONS_H_ */

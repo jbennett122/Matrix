@@ -21,7 +21,7 @@ void jacobi(int argc,char* argv[]){
 	fs.open(argv[1]);
 
 	int i,j,k,l,m,n,count,choice;
-	float nums,sum;
+	float nums,sum,tolerance;
 
 	count=0;
 
@@ -29,32 +29,22 @@ void jacobi(int argc,char* argv[]){
 	fs>>n>>m;
 
 
-	double **A,**D,**C,*x,*old,*diff;	//A D matrix
-	double b[n];	//Right hand side of Ax=b
-
-/*
-switch(choice){
-
-case 1 :
-	cout<<"jacobi"<<endl;
-
-	jacobi(argc,argv);
-
-	break;
-
-case 2:
-	cout<<"GS"<<endl;
-		break;
+	float **A,**D,**C,*x,*old,*diff;	//A D matrix
+	float b[n];	//Right hand side of Ax=b
 
 
-}*/
 
+float ending;
 
 srand (time(NULL));
 
+ending=1.0/100000.0;
 
-x=new double [n];
+cout<<"end condition "<<ending<<endl;
+
+x=new float [n];
 //initial guess
+cout<<"Initial guess"<<endl;
 for(i=0;i<n;i++){
 
 	float v1 = rand() %200 -100;
@@ -69,10 +59,10 @@ for(i=0;i<n;i++){
 
 
 //create matrix and import values
-	A = new double *[n];
+	A = new float *[n];
 	for (i=0; i < n; i++)
 	{
-		A[i]=new double [m];
+		A[i]=new float [m];
 
 		for(j=0;j<m;j++){
 
@@ -82,7 +72,7 @@ for(i=0;i<n;i++){
 
 		}
 	}
-	for (i=0; i < n; i++)
+/*	for (i=0; i < n; i++)
 		{
 		cout<<"|";
 			for(j=0;j<m;j++){
@@ -91,11 +81,15 @@ for(i=0;i<n;i++){
 			}
 		cout<<"|"<<endl;
 		}
-cout<<"entries in A matrix: "<<count<<endl;
+*/
+
+//cout<<"entries in A matrix: "<<count<<endl;
 
 cout<<"RHS"<<endl;
 
 	count =0;
+
+
 for(i=0;i<n;i++){
 
 		fs>>nums;
@@ -110,14 +104,14 @@ for(i=0;i<n;i++){
 			cout<<"|"<<endl;
 			}
 
-	cout<<"entries in b vector: "<<count<<endl;
+//	cout<<"entries in b vector: "<<count<<endl;
 
-	C = new double *[n];
+	C = new float *[n];
 
 for (i=0; i < n; i++)
 {
 
-		C[i]=new double [m];
+		C[i]=new float [m];
 			for(j=0;j<m;j++){
 
 				 if(i==j){
@@ -133,6 +127,8 @@ for (i=0; i < n; i++)
 }
 
 //print C matrix
+
+cout<<"C matrix"<<endl;
 for (i=0; i < n; i++)
 {
 			cout<<"|";
@@ -143,7 +139,7 @@ for (i=0; i < n; i++)
 			cout<<"|"<<endl;
 }
 
-old = new double [n];
+old = new float [n];
 
 count=0;
 do{
@@ -178,7 +174,7 @@ do{
 						//cout<<sum<<endl;
 
 		}
-
+/*
 cout<<"\nold"<<endl;
 	for(i=0;i<n;i++){
 						cout<<"|";
@@ -192,12 +188,12 @@ cout<<"\nold"<<endl;
 						cout<<"|"<<endl;
 		}
 
+*/
 
-
-	//tolCheck(x, old, n);
+	tolerance=tolCheck(x, old, n);
 
 count++;
-}while(count<2);
+}while(ending<tolerance);
 
 cout<<"\nfinal"<<endl;
 for(i=0;i<n;i++){

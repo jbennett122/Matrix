@@ -30,32 +30,36 @@ return x;
 
 
 
-double *tolCheck(double *x,double *old,int n){
+float tolCheck(float *x,float *old,int n){
 
-	double *diff;
+	float *diff;
+	float sum;
+	float tolerance=0;
+/*	cout<<"old"<<endl;
 
-	cout<<"old"<<endl;
-	for(int i=0;i<n;i++){
-
-			//diff[i]=1;
+ for(int i=0;i<n;i++){
 			cout<<old[i]<<endl;
 	}
+*/
+	sum=0;
 
 
 
-	cout<<"new"<<endl;
+	diff= new float [n];
 	for(int i=0;i<n;i++){
 
-		//diff[i]=old[i]-x[i];
-		cout<<x[i]<<endl;
+		diff[i]=old[i]-x[i];
 
-
-
+		sum=sum + diff[i];
 
 	}
+	cout<<abs(sum)<<endl;
+	tolerance = sqrt (abs(sum));
 
 //return diff;
 
-	return 0;
+	cout<<"tolerance: "<<setprecision(9)<<tolerance<<endl;
+
+	return tolerance;
 
 }
