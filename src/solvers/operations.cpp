@@ -8,33 +8,49 @@
 #include <fstream>
 #include <istream>
 #include <string>
-#include <iomanip>
+#include <stdlib.h>
+
 
 
 
 using namespace std;
 
 
-float *matrixMult(float *C,float *x,int n,int m){
+double *matVecMult(double **A,double *x,int n,int m){
 
-	float sum=0;
+	double sum=0;
 	//multiply [n][0] to [n][m] by [n][0] sum all results
 
-return x;
+	double *xnew,entry;
+
+	xnew=new double [n];
+	for(int i=0;i<n;i++){
+	  sum=0.0;
+		for(int j=0;j<m;j++){
+			sum += A[i][j] * x[j];
+			}
+		xnew[i]=sum;
+	}
 
 
+cout<<"matvecmatrix"<<endl;
+
+	for(int i=0;i<n;i++){
+
+		cout<<xnew[i]<<endl;
+	}
 
 
+	return xnew;
 
 }
 
 
+double tolCheck(double *x,double *old,int n){
 
-float tolCheck(float *x,float *old,int n){
-
-	float *diff;
-	float sum;
-	float tolerance=0;
+	double *diff;
+	double sum;
+	double tolerance=0;
 /*	cout<<"old"<<endl;
 
  for(int i=0;i<n;i++){
@@ -43,9 +59,7 @@ float tolCheck(float *x,float *old,int n){
 */
 	sum=0;
 
-
-
-	diff= new float [n];
+	diff= new double [n];
 	for(int i=0;i<n;i++){
 
 		diff[i]=old[i]-x[i];
@@ -56,10 +70,61 @@ float tolCheck(float *x,float *old,int n){
 
 	tolerance = sqrt (pow(sum,2));
 
-//return diff;
-
-	cout<<"tolerance: "<<setprecision(9)<<tolerance<<endl;
+	cout<<"tolerance: "<<setprecision(4)<<tolerance<<endl;
 
 	return tolerance;
 
 }
+
+
+
+void randomMatrix(){
+
+
+	ofstream inputFile;
+	ofstream solutionFile;
+
+	int i;
+	double v1;
+
+	int n,m;
+	srand (time(NULL));
+	string k;
+	inputFile.open("input9.txt");
+
+	cout<<"enter dimnesions:"<<endl;
+	cout<<"N: ";
+	cin>>n;
+
+	inputFile<<n;
+	inputFile<<" ";
+	cout<<"M: ";
+	cin>>m;
+
+	inputFile<<m;
+	inputFile<<"\n";
+
+	int mult =  n*m;
+
+	for(i=0;i<mult;i++){
+		 v1 = rand() %200-100 ;
+
+		inputFile<<v1<<" ";
+
+		}
+
+	inputFile.close();
+	solutionFile.open("solution9.txt");
+
+	for(i=0;i<n;i++){
+			 v1 = rand() %200-100 ;
+
+			solutionFile<<v1<<" ";
+
+			}
+
+	solutionFile.close();
+}
+
+
+

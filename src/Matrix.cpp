@@ -16,6 +16,7 @@
 #include <istream>
 #include <string>
 #include "headers/jacobi.h"
+#include "headers/operations.h"
 
 
 using namespace std;
@@ -55,7 +56,7 @@ int main(int argc,char* argv[]) {
 
 
 		fs2.open(argv[2]);
-
+		randomMatrix();
 cout<<"chose solver"<<endl;
 cout<<"1. Jacobi\n2. Gauss Seidel\n3. SOR\n4. Gaussian Elimination\n5. L-U\n6. Bi-section\n7. Regula Falsi\n8. Newtons"<<endl;
 cin>>choice;

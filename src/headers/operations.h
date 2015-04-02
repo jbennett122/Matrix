@@ -9,7 +9,10 @@
 #define OPERATIONS_H_
 
 
-float *matrixMult(float *C,float *x,int n,int m);
+double matVecMult(double **A,double *x,int n,int m);
 
-float tolCheck(float *x,float *old,int n);
+double tolCheck(double *x,double *old,int n);
+
+void randomMatrix();
+
 #endif /* OPERATIONS_H_ */
