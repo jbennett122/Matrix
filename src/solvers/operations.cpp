@@ -56,6 +56,7 @@ void choices(int count,int n, double *x,double error){
 	cin>>choice;
 
 	}while(choice!=3);
+	cout<<"1. Jacobi\n2. Gauss Seidel\n3. SOR\n4. Gaussian Elimination\n5. L-U\n6. Bi-section\n7. Regula Falsi\n8. Newtons\n9. Exit"<<endl;
 
 
 }
@@ -144,13 +145,10 @@ void randomMatrix(){
 	cout<<"N: ";
 	cin>>n;
 
-	inputFile<<n;
-	inputFile<<" ";
-	cout<<"M: ";
+ 	cout<<"M: ";
 	cin>>m;
 
-	inputFile<<m;
-	inputFile<<"\n";
+	inputFile<<n<<" "<<m<<"\n";
 
 //cout<<"test1"<<endl;
 	//create new A matrix
