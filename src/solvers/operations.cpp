@@ -15,6 +15,8 @@
 
 using namespace std;
 
+
+
 void choices(int count,int n, double *x,double error){
 
 	int choice,i;
@@ -55,7 +57,9 @@ void choices(int count,int n, double *x,double error){
 
 	}while(choice!=3);
 
+
 }
+
 void matVecMultV(double **A,double *x,int n,int m){
 
 	ofstream rightHand;
@@ -148,24 +152,38 @@ void randomMatrix(){
 	inputFile<<m;
 	inputFile<<"\n";
 
-
+//cout<<"test1"<<endl;
 	//create new A matrix
+
 	Matrix= new double *[n];
 	for(i=0;i<n;i++){
-
+//cout<<"test2"<<endl;
 		Matrix[i]=new double [m];
 
 		for(j=0;j<m;j++){
-
-			Matrix[i][j]= (rand() %200-100) /((rand() %3)) ;
+	//		cout<<"test3"<<endl;
+			Matrix[i][j]=0.0;
 
 			}
 
 		}
 
+
+	for(i=0;i<n;i++){
+//cout<<"test2"<<endl;
+
+
+		for(j=0;j<m;j++){
+	//		cout<<"test3"<<endl;
+			Matrix[i][j]= (rand() %200-100)/3 ;
+
+			}
+
+		}
+//cout<<"test4"<<endl;
 	//make matrix diagonally dominate
 	for(i=0;i<n;i++){
-
+//cout<<"test5"<<endl;
 		sum=0.0;
 		for(j=0;j<m;j++){
 			sum+= abs(Matrix[i][j]);
@@ -180,7 +198,7 @@ void randomMatrix(){
 			inputFile<<Matrix[i][j]<<" ";
 			}
 		}
-
+//cout<<"test6"<<endl;
 
 	//RHS -- since moved to multMatVec function
 	/*inputFile<<"\n";
@@ -199,7 +217,7 @@ void randomMatrix(){
 	solutionFile.open("solution9.txt");
 x= new double [n];
 	for(i=0;i<n;i++){
-			 v1 = (rand() %200-100)/((rand() %7));
+			 v1 = (rand() %200-100)/(rand() %5);
 			 x[i]=v1;
 			solutionFile<<v1<<" ";
 
