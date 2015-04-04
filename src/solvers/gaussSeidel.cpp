@@ -48,7 +48,7 @@ void* gaussSeidel(int argc,char* argv[])
 
 
 	//initial guess
-	cout<<"Initial guess"<<endl;
+	cout<<"\nInitial guess"<<endl;
 	x=new double [n];
 	for(i=0;i<n;i++){
 
@@ -77,6 +77,8 @@ void* gaussSeidel(int argc,char* argv[])
 
 			}
 		}
+
+		cout<<"\nA matrix "<<endl;
 	 	for (i=0; i < n; i++)
 			{
 			cout<<"|";
@@ -89,7 +91,7 @@ void* gaussSeidel(int argc,char* argv[])
 
 
 		//cout<<"entries in A matrix: "<<count<<endl;
-		cout<<"RHS"<<endl;
+		cout<<"\nRHS"<<endl;
 
 		count =0;
 
@@ -112,7 +114,7 @@ old = new double [n];
 
 count=0;
 do{
-
+	count++;
 	for(i=0;i<n;i++){
 
 		old[i]=x[i];
@@ -151,7 +153,7 @@ do{
 	else cout<<"not yet"<<endl;
 	*/
 
-count++;
+
 }while(ending<tolerance);
 
 

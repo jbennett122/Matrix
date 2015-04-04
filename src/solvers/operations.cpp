@@ -18,37 +18,44 @@ using namespace std;
 void choices(int count,int n, double *x,double error){
 
 	int choice,i;
-	cout<<"Choose Option\n1.X solution\n2.Iterations and error"<<endl;
+	cout<<"\nChoose Option\n1.X solution\n2.Iterations and error\n3.Exit to Main Menu"<<endl;
 
 	choice=99999;
 
 	cin>>choice;
 
-	if(choice==1){
+	do{
+	switch(choice){
 
-		cout<<"\nfinal"<<endl;
+	case 1:
+
+		cout<<"\nFinal X"<<endl;
 
 			for(i=0;i<n;i++){
 							cout<<"|";
 								cout<<" "<<setw(8)<<x[i]<<" ";
 							cout<<"|"<<endl;
 						}
+		break;
 
+	case 2:
 
+		cout<<"\nIterations: "<<count<<" and Percent error: "<<error<<endl;
+		break;
 
-	}
-	else{
+	case 3:
+	 cout<<"\nExiting to Solver Menu\n"<<endl;
+	 	 break;
 
+	default:
+		cout<<"Choose a valid option"<<endl;
 
+		}
+	cin>>choice;
 
-		cout<<count<<" "<<error<<endl;
-
-
-	}
-
+	}while(choice!=3);
 
 }
-
 void matVecMultV(double **A,double *x,int n,int m){
 
 	ofstream rightHand;
@@ -150,7 +157,7 @@ void randomMatrix(){
 
 		for(j=0;j<m;j++){
 
-			Matrix[i][j]= (rand() %200-100) /((rand() %3) + .2) ;
+			Matrix[i][j]= (rand() %200-100) /((rand() %3)) ;
 
 			}
 
@@ -235,12 +242,12 @@ xDiff=matrixSubtraction(xActual,x,n);
 top=matrixSum(xDiff,n);
 bottom=matrixSum(xActual,n);
 
-cout<<"top: "<<top<<" bottom: "<<bottom<<endl;
+//cout<<"top: "<<top<<" bottom: "<<bottom<<endl;
 
 perctError=(sqrt(top)/sqrt(bottom));
 
 
-cout<<"error: "<<perctError<<endl;
+//cout<<"error: "<<perctError<<endl;
 
 
 	return perctError;
@@ -262,7 +269,7 @@ double *matrixSubtraction(double *xA, double *x,int n){
 
 
 			xDiff[i]=xA[i]-x[i];
-			cout<<xA[i]<<"-"<<x[i]<<" = "<<xDiff[i]<<endl;
+		//	cout<<xA[i]<<"-"<<x[i]<<" = "<<xDiff[i]<<endl;
 		}
 
 

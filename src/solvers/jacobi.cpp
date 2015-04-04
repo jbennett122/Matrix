@@ -36,66 +36,67 @@ void jacobi(int argc,char* argv[]){
 	srand (time(NULL));
 
 
-//initial guess
-
-cout<<"Initial guess"<<endl;
-x=new double [n];
-for(i=0;i<n;i++){
-
-	double v1 = rand() %200 -100;
-
-	x[i]=v1;
-}
+	//initial guess
+		cout<<"\nInitial guess"<<endl;
+		x=new double [n];
 		for(i=0;i<n;i++){
-				cout<<"|";
-					cout<<" "<<setw(8)<<x[i]<<" ";
-				cout<<"|"<<endl;
-					}
 
+			double v1 = rand() %200 -100;
 
-//create matrix and import values
-	A = new double *[n];
-	for (i=0; i < n; i++)
-	{
-		A[i]=new double [m];
-
-		for(j=0;j<m;j++){
-
-			fs>>nums;
-			A[i][j]=nums;
-			count++;
-
+			x[i]=v1;
 		}
-	}
- 	for (i=0; i < n; i++)
-		{
-		cout<<"|";
-			for(j=0;j<m;j++){
-
-			  cout<<" "<<setw(8)<<A[i][j]<<" ";
-			}
-		cout<<"|"<<endl;
-		}
+				for(i=0;i<n;i++){
+						cout<<"|";
+							cout<<" "<<setw(8)<<x[i]<<" ";
+						cout<<"|"<<endl;
+							}
 
 
-	//cout<<"entries in A matrix: "<<count<<endl;
-	cout<<"RHS"<<endl;
-
-	count =0;
-
-	for(i=0;i<n;i++){
-
-		fs>>nums;
-		b[i]=nums;
-		count++;
-		}
-
-	for (i=0; i < n; i++)
+		//create matrix and import values
+			A = new double *[n];
+			for (i=0; i < n; i++)
 			{
-			cout<<"|";
-				cout<<" "<<setw(8)<<b[i]<<" ";
-			cout<<"|"<<endl;
+				A[i]=new double [m];
+
+				for(j=0;j<m;j++){
+
+					fs>>nums;
+					A[i][j]=nums;
+					count++;
+
+				}
 			}
+
+			cout<<"\nA matrix "<<endl;
+		 	for (i=0; i < n; i++)
+				{
+				cout<<"|";
+					for(j=0;j<m;j++){
+
+					  cout<<" "<<setw(8)<<A[i][j]<<" ";
+					}
+				cout<<"|"<<endl;
+				}
+
+
+			//cout<<"entries in A matrix: "<<count<<endl;
+			cout<<"\nRHS"<<endl;
+
+			count =0;
+
+		for(i=0;i<n;i++){
+
+				fs>>nums;
+				b[i]=nums;
+				count++;
+				}
+
+			for (i=0; i < n; i++)
+					{
+					cout<<"|";
+						cout<<" "<<setw(8)<<b[i]<<" ";
+					cout<<"|"<<endl;
+					}
 
 //	cout<<"entries in b vector: "<<count<<endl;
 
@@ -103,7 +104,7 @@ old = new double [n];
 
 count=0;
 do{
-
+	count++;
 	for(i=0;i<n;i++){
 
 		old[i]=x[i];
@@ -141,7 +142,7 @@ do{
 		*/
 
 
-count++;
+
 }while(ending<tolerance);
 
 error= calcError(argc,argv,x,n);
