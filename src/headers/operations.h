@@ -8,11 +8,20 @@
 #ifndef OPERATIONS_H_
 #define OPERATIONS_H_
 
+void choices(int count,int n, double *x,double error);
 
-double matVecMult(double **A,double *x,int n,int m);
+double matVecMultD(double **A,double *x,int n,int m);
+
+void matVecMultV(double **A,double *x,int n,int m);
 
 double tolCheck(double *x,double *old,int n);
 
 void randomMatrix();
+
+double calcError(int argc,char* argv[],double *x,int n);
+
+double *matrixSubtraction(double *xA, double *x,int n);
+
+double matrixSum(double *Matrix,int n);
 
 #endif /* OPERATIONS_H_ */

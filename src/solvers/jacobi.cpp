@@ -22,7 +22,7 @@ void jacobi(int argc,char* argv[]){
 
 	int i,j,k,l,m,n,count,choice;
 	double nums,sum,tolerance;
-
+	double error;
 	count=0;
 
 	fs.clear();
@@ -31,13 +31,14 @@ void jacobi(int argc,char* argv[]){
 
 	double **A,**D,**C,*x,*old,*diff;	//A D matrix
 	double b[n];	//Right hand side of Ax=b
-	double ending=1.0/100000.0;
+	double ending=1.0/10000.0;
 
 	srand (time(NULL));
 
 
 //initial guess
-//cout<<"Initial guess"<<endl;
+
+cout<<"Initial guess"<<endl;
 x=new double [n];
 for(i=0;i<n;i++){
 
@@ -66,7 +67,7 @@ for(i=0;i<n;i++){
 
 		}
 	}
-/*	for (i=0; i < n; i++)
+ 	for (i=0; i < n; i++)
 		{
 		cout<<"|";
 			for(j=0;j<m;j++){
@@ -75,13 +76,12 @@ for(i=0;i<n;i++){
 			}
 		cout<<"|"<<endl;
 		}
-*/
+
 
 	//cout<<"entries in A matrix: "<<count<<endl;
 	cout<<"RHS"<<endl;
 
 	count =0;
-
 
 	for(i=0;i<n;i++){
 
@@ -98,32 +98,6 @@ for(i=0;i<n;i++){
 			}
 
 //	cout<<"entries in b vector: "<<count<<endl;
-
-C = new double *[n];
-for (i=0; i < n; i++)
-{
-		C[i]=new double [m];
-			for(j=0;j<m;j++){
-				 if(i==j){
-					C[i][j]=0.0;
-				 }else
-				 {
-					C[i][j]=A[i][j];
-				 }
-			}
-}
-
-//print C matrix
-//cout<<"C matrix"<<endl;
-for (i=0; i < n; i++)
-{
-			cout<<"|";
-				for(j=0;j<m;j++){
-
-				  cout<<" "<<setw(8)<<C[i][j]<<" ";
-				}
-			cout<<"|"<<endl;
-}
 
 old = new double [n];
 
@@ -157,16 +131,23 @@ do{
 
 	tolerance=tolCheck(x, old, n);
 
+
+
+	/*if(ending<tolerance){
+			cout<<ending<<endl;
+			cout<<"ending condition"<<endl;
+		}
+		else cout<<"not yet"<<endl;
+		*/
+
+
 count++;
 }while(ending<tolerance);
 
-cout<<"\nfinal"<<endl;
+error= calcError(argc,argv,x,n);
 
-	for(i=0;i<n;i++){
-					cout<<"|";
-						cout<<" "<<setw(8)<<x[i]<<" ";
-					cout<<"|"<<endl;
-				}
+choices(count,n,x,error);
+
 
 }
 

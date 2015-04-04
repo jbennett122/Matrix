@@ -32,7 +32,7 @@ void* gaussSeidel(int argc,char* argv[])
 
 		int i,j,k,l,m,n,count,choice;
 		double nums,sum,tolerance,U,L;;
-
+		double error;
 		count=0;
 
 		fs.clear();
@@ -41,13 +41,14 @@ void* gaussSeidel(int argc,char* argv[])
 
 		double **A,**D,**C,*x,*old,*diff;	//A D matrix
 		double b[n];	//Right hand side of Ax=b
-		double ending=1.0/100000.0;
+		double ending=1.0/10000.0;
+
 
 		srand (time(NULL));
 
 
 	//initial guess
-	//cout<<"Initial guess"<<endl;
+	cout<<"Initial guess"<<endl;
 	x=new double [n];
 	for(i=0;i<n;i++){
 
@@ -92,8 +93,7 @@ void* gaussSeidel(int argc,char* argv[])
 
 		count =0;
 
-
-		for(i=0;i<n;i++){
+	for(i=0;i<n;i++){
 
 			fs>>nums;
 			b[i]=nums;
@@ -106,10 +106,6 @@ void* gaussSeidel(int argc,char* argv[])
 					cout<<" "<<setw(8)<<b[i]<<" ";
 				cout<<"|"<<endl;
 				}
-
-
-
-
 
 
 old = new double [n];
@@ -146,16 +142,23 @@ do{
 
 	tolerance=tolCheck(x, old, n);
 
+
+
+	/*if(ending<tolerance){
+		cout<<ending<<endl;
+		cout<<"ending condition"<<endl;
+	}
+	else cout<<"not yet"<<endl;
+	*/
+
 count++;
 }while(ending<tolerance);
 
-cout<<"\nfinal"<<endl;
 
-	for(i=0;i<n;i++){
-					cout<<"|";
-						cout<<" "<<setw(8)<<x[i]<<" ";
-					cout<<"|"<<endl;
-				}
+
+error= calcError(argc,argv,x,n);
+
+choices(count,n,x,error);
 
 
 }

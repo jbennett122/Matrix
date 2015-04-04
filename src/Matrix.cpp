@@ -21,6 +21,11 @@
 
 using namespace std;
 
+
+
+
+
+
 int main(int argc,char* argv[]) {
 
  	 int n,m,choice;
@@ -35,6 +40,7 @@ int main(int argc,char* argv[]) {
 	 		cout<<"Files not found"<<endl;
 	 		return -1;
 	 	}
+	// cout<<RAND_MAX<<endl;
 
 	//file already open?
 	// cerr<<fs.is_open()<<endl;
@@ -56,7 +62,10 @@ int main(int argc,char* argv[]) {
 
 
 		fs2.open(argv[2]);
-		randomMatrix();
+
+
+		//create random matrix
+randomMatrix();
 cout<<"chose solver"<<endl;
 cout<<"1. Jacobi\n2. Gauss Seidel\n3. SOR\n4. Gaussian Elimination\n5. L-U\n6. Bi-section\n7. Regula Falsi\n8. Newtons\n9. Exit"<<endl;
 cin>>choice;
@@ -80,8 +89,10 @@ case 2:
 }
 
 
-	return 0;
 
+cin>>choice;
 }while(choice!=9);
+
+cout<<"All done"<<endl;
 }
 

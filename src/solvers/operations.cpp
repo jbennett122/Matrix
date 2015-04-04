@@ -9,42 +9,80 @@
 #include <istream>
 #include <string>
 #include <stdlib.h>
-
+#include "../headers/operations.h"
 
 
 
 using namespace std;
 
+void choices(int count,int n, double *x,double error){
 
-double *matVecMult(double **A,double *x,int n,int m){
+	int choice,i;
+	cout<<"Choose Option\n1.X solution\n2.Iterations and error"<<endl;
+
+	choice=99999;
+
+	cin>>choice;
+
+	if(choice==1){
+
+		cout<<"\nfinal"<<endl;
+
+			for(i=0;i<n;i++){
+							cout<<"|";
+								cout<<" "<<setw(8)<<x[i]<<" ";
+							cout<<"|"<<endl;
+						}
+
+
+
+	}
+	else{
+
+
+
+		cout<<count<<" "<<error<<endl;
+
+
+	}
+
+
+}
+
+void matVecMultV(double **A,double *x,int n,int m){
+
+	ofstream rightHand;
+
 
 	double sum=0;
-	//multiply [n][0] to [n][m] by [n][0] sum all results
+	double *b;
 
-	double *xnew,entry;
-
-	xnew=new double [n];
+	b=new double [n];
 	for(int i=0;i<n;i++){
 	  sum=0.0;
 		for(int j=0;j<m;j++){
 			sum += A[i][j] * x[j];
-			}
-		xnew[i]=sum;
+			//cout<<A[i][j]<<" * "<<x[j]<<endl;
+		//	cout<<"A["<<i<<"]"<<"["<<j<<"]"<<" * x["<<j<<"] :"<< sum<<endl;
+			b[i]=sum;}
+
 	}
 
+//cout<<"Finding right side"<<endl;
 
-cout<<"matvecmatrix"<<endl;
+	rightHand.open("input9.txt",fstream::app);
 
+	rightHand<<"\n";
 	for(int i=0;i<n;i++){
 
-		cout<<xnew[i]<<endl;
+		//cout<<xnew[i]<<endl;
+		rightHand<<b[i]<<" ";
+
 	}
 
-
-	return xnew;
+rightHand.close();
 
 }
-
 
 double tolCheck(double *x,double *old,int n){
 
@@ -76,23 +114,22 @@ double tolCheck(double *x,double *old,int n){
 
 }
 
-
-
 void randomMatrix(){
 
 
 	ofstream inputFile;
 	ofstream solutionFile;
 
-	int i;
-	double v1;
+	int i,j;
+	double v1,sum;
+	double **Matrix,*x;
 
 	int n,m;
 	srand (time(NULL));
 	string k;
 	inputFile.open("input9.txt");
 
-	cout<<"enter dimnesions:"<<endl;
+	cout<<"enter dimensions:"<<endl;
 	cout<<"N: ";
 	cin>>n;
 
@@ -104,27 +141,148 @@ void randomMatrix(){
 	inputFile<<m;
 	inputFile<<"\n";
 
-	int mult =  n*m;
 
-	for(i=0;i<mult;i++){
-		 v1 = rand() %200-100 ;
+	//create new A matrix
+	Matrix= new double *[n];
+	for(i=0;i<n;i++){
 
-		inputFile<<v1<<" ";
+		Matrix[i]=new double [m];
+
+		for(j=0;j<m;j++){
+
+			Matrix[i][j]= (rand() %200-100) /((rand() %3) + .2) ;
+
+			}
 
 		}
 
-	inputFile.close();
-	solutionFile.open("solution9.txt");
-
+	//make matrix diagonally dominate
 	for(i=0;i<n;i++){
-			 v1 = rand() %200-100 ;
 
+		sum=0.0;
+		for(j=0;j<m;j++){
+			sum+= abs(Matrix[i][j]);
+			}
+		Matrix[i][i]=sum;
+
+		}
+
+	//write DD A matrix to file
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			inputFile<<Matrix[i][j]<<" ";
+			}
+		}
+
+
+	//RHS -- since moved to multMatVec function
+	/*inputFile<<"\n";
+	for(i=0;i<n;i++){
+
+		 v1 = rand() %200-100 ;
+		inputFile<<v1<<" ";
+
+
+	}
+	*/
+	inputFile.close();
+
+
+	//create random X vector solution
+	solutionFile.open("solution9.txt");
+x= new double [n];
+	for(i=0;i<n;i++){
+			 v1 = (rand() %200-100)/((rand() %7));
+			 x[i]=v1;
 			solutionFile<<v1<<" ";
 
 			}
 
 	solutionFile.close();
+
+//calculate Ax and append B to input9.txt file
+	matVecMultV( Matrix,x, n, m);
+
+
+	delete []Matrix;
+	delete []x;
+
 }
 
+double calcError(int argc,char* argv[],double *x,int n){
+
+
+	ifstream solution;
+	double top,bottom;
+	double *xActual,*xDiff;
+	int i;
+	float perctError;
+	solution.open("solution9.txt");
+	top=bottom=0.0;
+	xActual=new double[n];
+	perctError=0.0;
+for(i=0;i<n;i++){
+
+
+solution>>xActual[i];
+
+
+}
+
+xDiff=matrixSubtraction(xActual,x,n);
+
+
+top=matrixSum(xDiff,n);
+bottom=matrixSum(xActual,n);
+
+cout<<"top: "<<top<<" bottom: "<<bottom<<endl;
+
+perctError=(sqrt(top)/sqrt(bottom));
+
+
+cout<<"error: "<<perctError<<endl;
+
+
+	return perctError;
+
+}
+
+double *matrixSubtraction(double *xA, double *x,int n){
+
+	double *xDiff;
+
+	xDiff= new double [n];
+	for(int i=0;i<n;i++){
+
+		xDiff[i]=xA[i]-x[i];
+
+	}
+
+	for(int i=0;i<n;i++){
+
+
+			xDiff[i]=xA[i]-x[i];
+			cout<<xA[i]<<"-"<<x[i]<<" = "<<xDiff[i]<<endl;
+		}
+
+
+	return xDiff;
+
+}
+
+double matrixSum(double *Matrix,int n){
+	double sum=0.0;
+	for(int i=0;i<n;i++){
+
+		sum =pow(Matrix[i],2);
+
+	}
+
+	sum =  sqrt(sum);
+	return sum;
+
+
+
+}
 
 
