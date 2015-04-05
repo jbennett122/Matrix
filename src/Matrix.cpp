@@ -71,10 +71,11 @@ cout<<"chose solver"<<endl;
 cout<<"1. Jacobi\n2. Gauss Seidel\n3. SOR\n4. Gaussian Elimination\n5. L-U\n6. Bi-section\n7. Regula Falsi\n8. Newtons\n9. Exit"<<endl;
 cin>>choice;
 do{
+
 switch(choice){
 
 case 1 :
-	cout<<"jacobi"<<endl;
+	cout<<"Jacobi"<<endl;
 
 	jacobi(argc,argv);
 

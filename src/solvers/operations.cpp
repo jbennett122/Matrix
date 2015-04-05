@@ -24,9 +24,11 @@ void choices(int count,int n, double *x,double error){
 
 	choice=99999;
 
-	cin>>choice;
+
 
 	do{
+		cin>>choice;
+
 	switch(choice){
 
 	case 1:
@@ -38,22 +40,29 @@ void choices(int count,int n, double *x,double error){
 								cout<<" "<<setw(8)<<x[i]<<" ";
 							cout<<"|"<<endl;
 						}
+
+			cout<<"\nChoose Option\n1.X solution\n2.Iterations and error\n3.Exit to Main Menu"<<endl;
+
 		break;
 
 	case 2:
 
 		cout<<"\nIterations: "<<count<<" and Percent error: "<<error<<endl;
+
+		cout<<"\nChoose Option\n1.X solution\n2.Iterations and error\n3.Exit to Main Menu"<<endl;
+
 		break;
 
 	case 3:
 	 cout<<"\nExiting to Solver Menu\n"<<endl;
+
 	 	 break;
 
 	default:
 		cout<<"Choose a valid option"<<endl;
 
 		}
-	cin>>choice;
+
 
 	}while(choice!=3);
 	cout<<"1. Jacobi\n2. Gauss Seidel\n3. SOR\n4. Gaussian Elimination\n5. L-U\n6. Bi-section\n7. Regula Falsi\n8. Newtons\n9. Exit"<<endl;
