@@ -9,7 +9,7 @@
 #define GAUSSSIDEL_H_
 
 
-void* gaussSeidel(int argc,char* argv[]);
+void gaussSeidel(int argc,char* argv[]);
 
 
 #endif /* GAUSSSIDEL_H_ */

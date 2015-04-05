@@ -23,7 +23,7 @@ using namespace std;
 
 
 
-void* gaussSeidel(int argc,char* argv[])
+void gaussSeidel(int argc,char* argv[])
 {
 
 
@@ -31,7 +31,7 @@ void* gaussSeidel(int argc,char* argv[])
 		fs.open(argv[1]);
 
 		int i,j,k,l,m,n,count,choice;
-		double nums,sum,tolerance,U,L;;
+		double nums,sum,tolerance,U,L;
 		double error;
 		count=0;
 
@@ -124,20 +124,20 @@ do{
 	for(int i=0; i<n; ++i)
 		{
 			sum = L = U = 0;
-				//Sum lowerC
+					//Sum lower half
 					for(int j = 0; j < i; ++j)
 							{
 								L = L + (A[i][j] * x[j]);
 							}
-					//Sum upperC
+					//Sum upper half
 					for( int j = (i+1); j < m; ++j)
 							{
 								U= U + (A[i][j] * x[j]);
 							}
-					//Total for iteration
+
 					sum = b[i] - L - U;
 
-					//Update xk1[i]
+					//change x to be used in next iteration
 					x[i] = sum / A[i][i];
 
 		}

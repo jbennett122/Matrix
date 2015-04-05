@@ -18,6 +18,7 @@
 #include "headers/jacobi.h"
 #include "headers/operations.h"
 #include "headers/gaussSeidel.h"
+#include "headers/sor.h"
 
 using namespace std;
 
@@ -80,15 +81,19 @@ case 1 :
 	break;
 
 case 2:
-	cout<<"GS"<<endl;
+	cout<<"Gauss-Seidel"<<endl;
 
 	gaussSeidel(argc,argv);
 	break;
 
+case 3:
+
+	cout<<"SOR"<<endl;
+	sor(argc,argv);
+
+	break;
 
 }
-
-
 
 cin>>choice;
 }while(choice!=9);
