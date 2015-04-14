@@ -25,7 +25,7 @@ void gaussianElim(int argc,char* argv[])
 ifstream fs;
 	fs.open(argv[1]);
 
-	int i,j,k,l,m,n,count,choice;
+	int i,j,k,l,m,n,count;
 	double nums,sum,tolerance,max;
 	double error;
 	count=0;
@@ -123,7 +123,7 @@ ifstream fs;
 				  l=m+1;
  //printMatrix(D,n,l);
 				old = new double [n];
-				double c;
+
 				count=2;
 
 			//	cout<<"test1"<<endl;
@@ -164,6 +164,12 @@ do{
 								    printMatrix(D,n,l);
 
 						}
+
+
+					//time to backsolve
+
+
+
 					cout<<"\nend "<<endl;
 					printMatrix(D,n,l);
 
