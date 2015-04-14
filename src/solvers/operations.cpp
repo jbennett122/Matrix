@@ -15,8 +15,6 @@
 
 using namespace std;
 
-
-
 void choices(int count,int n, double *x,double error){
 
 	int choice,i;
@@ -182,7 +180,7 @@ void randomMatrix(){
 
 		for(j=0;j<m;j++){
 	//		cout<<"test3"<<endl;
-			Matrix[i][j]= (rand() %200-100)/3 ;
+			Matrix[i][j]= (rand() %20-10)/3 ;
 
 			}
 
@@ -224,7 +222,7 @@ void randomMatrix(){
 	solutionFile.open("solution9.txt");
 x= new double [n];
 	for(i=0;i<n;i++){
-			 v1 = (rand() %200-100)/(rand() %5);
+			 v1 = (rand() %20-10)/(rand() %5);
 			 x[i]=v1;
 			solutionFile<<v1<<" ";
 
@@ -312,6 +310,99 @@ double matrixSum(double *Matrix,int n){
 
 	sum =  sqrt(sum);
 	return sum;
+
+
+
+}
+
+void rowSwap(double** A, const int& r1, const int& r2)
+{
+	cout<<"swap"<<endl;
+
+	double* temp = A[r1];
+	A[r1] = A[r2];
+	A[r2] = temp;
+
+
+}
+
+void printMatrix(double** A,int n, int m){
+	int i,k,j;
+cout<<"\n"<<endl;
+	for (i=0; i < n; i++)
+				{
+				cout<<"|";
+					for(j=0;j<m;j++){
+
+				cout<<" "<<setw(8)<<A[i][j]<<" ";
+								}
+				cout<<"|"<<endl;
+					}
+
+}
+
+double** augMat(double** A,double *b,int n,int m){
+
+	int i,j,q;
+	double **AM;
+
+	q=m+1;
+	AM= new double *[q];
+//cout<<"t1"<<endl;
+	for(i=0;i<n;i++){
+	//cout<<"test2"<<endl;
+			AM[i]=new double [q];
+
+
+
+			for(j=0;j<q;j++){
+			//	cout<<"A["<<i<<"]["<<j<<"]"<<endl;
+
+				//cout<<"test3"<<endl;
+				if(j==q-1){
+			//	cout<<b[i]<<endl;
+					AM[i][j]=b[i];
+
+				}
+				else{
+			//	cout<<A[i][j]<<endl;
+				AM[i][j]=A[i][j];
+				}
+				}
+
+			}
+//cout<<"t2"<<endl;
+//printMatrix(AM,n,q);
+
+return AM;
+
+}
+
+void rowSubtraction(double** A,int n, int m,int r){
+	int j,i;
+	for(i=r+1;i<n;i++){
+		for(j=0;j<m;j++){
+			//cout<<"\nRow:"<<i+1<<endl;
+			//cout<<A[i][j]<<" - " <<A[i][j]<<" * " <<A[r][j]<<endl;
+			A[i][j]=A[i][j]- (A[i][j]*A[r][j]);
+			//cout<<A[i][j]<<endl;
+		}
+
+
+	}
+
+
+
+}
+
+void rowDiv(double **A,double max,int c,int m){
+	int i=c;
+	for(int j=c;j<m;j++){
+
+		//cout<<A[i][j]<<" / "<<max<<endl;
+
+		A[i][j]=A[i][j]/max;
+	}
 
 
 
