@@ -19,6 +19,7 @@
 #include "headers/operations.h"
 #include "headers/gaussSeidel.h"
 #include "headers/sor.h"
+#include "headers/ge.h"
 
 using namespace std;
 
@@ -93,6 +94,14 @@ case 3:
 	sor(argc,argv);
 
 	break;
+
+case 4:
+
+	cout<<"Gaussian Elimination"<<endl;
+	gaussianElim(argc,argv);
+
+	break;
+
 
 }
 
