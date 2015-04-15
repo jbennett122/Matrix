@@ -133,7 +133,7 @@ cout<<x[i]<<endl;
 					}
 
 			//	cout<<"test1"<<endl;
-do{
+
 
 
 
@@ -186,7 +186,7 @@ do{
 					cout<<n<<endl;
 					cout<<count++<<endl;
 
-				}while(count<n);
+
 
 x[n-1]=D[n-1][l-1];
 

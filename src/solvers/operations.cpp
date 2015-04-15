@@ -390,8 +390,9 @@ void rowSubtraction(double** A,int n, int m,int r){
 			A[i][j]=A[i][j]- (A[i][j]*A[r][j]);
 			//cout<<A[i][j]<<endl;
 		}
-		}
 
+		}
+		else cout<<"not done"<<endl;
 	}
 
 
