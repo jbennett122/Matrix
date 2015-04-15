@@ -381,13 +381,16 @@ return AM;
 void rowSubtraction(double** A,int n, int m,int r){
 	int j,i;
 	for(i=r+1;i<n;i++){
+//cout<<"i and r "<<i<<r<<endl;
+//cout<<"next row "<<A[1][1]<<endl;
+		if(A[i][i-1]!=0){
 		for(j=0;j<m;j++){
 			//cout<<"\nRow:"<<i+1<<endl;
 			//cout<<A[i][j]<<" - " <<A[i][j]<<" * " <<A[r][j]<<endl;
 			A[i][j]=A[i][j]- (A[i][j]*A[r][j]);
 			//cout<<A[i][j]<<endl;
 		}
-
+		}
 
 	}
 

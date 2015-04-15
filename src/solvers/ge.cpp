@@ -121,15 +121,15 @@ ifstream fs;
 				D=augMat(A,b,n,m);
 
 				  l=m+1;
- //printMatrix(D,n,l);
+ printMatrix(D,n,l);
 				old = new double [n];
 
 				count=2;
-
+x= new double[n];
 				for(i=0;i<n;i++){
 
 				 x[i]=0.0;
-
+cout<<x[i]<<endl;
 					}
 
 			//	cout<<"test1"<<endl;
@@ -139,18 +139,20 @@ do{
 
 //A[3][0]=888;
 
-						for(i=0;i<n;i++){
+						for(i=0;i<n;++i){
 							max=0.0;
 
-								max=D[i][i];
-							//	cout<<"Aii is  "<<D[i][i]<<endl;
-							//	cout<<"max before is "<<max<<endl;
+								//max=D[i][i];
+								cout<<"max is "<<max<<endl;
+							cout<<"Dii is  "<<D[1][1]<<endl;
+							 cout<<"i is "<<i<<endl;
 							//find row with largest largest value
 									for(k=i;k<n;k++)
 										{
 										if(D[k][i]>max){
-											max=A[k][i];
-											rowSwap(A,i,k);
+											max=D[k][i];
+											rowSwap(D,i,k);
+											//cout<<"swap"<<endl;
 											}
 
 								//		cout<<"Aij is  "<<A[i][j]<<endl;
@@ -159,37 +161,17 @@ do{
 							//		cout<<"Aii / max is  "<<A[i][i]<<" / "<<max<<endl;
 
 									rowDiv(D,max,i,l);
+									cout<<"row div done"<<endl;
+									printMatrix(D,n,l);
 
 
-								//	cout<<"= "<<A[i][i]<<endl;
+									cout<<"sub"<<endl;
 									rowSubtraction(D,n,l,i);
-								    printMatrix(D,n,l);
+									printMatrix(D,n,l);
 
 						}
 
 
-					//time to backsolve
-						for(i=n-1;i>=0;i--){
-
-
-							sum =0;
-
-							for(j=i+1;j<n;j++){
-
-
-								sum = sum + (D[i][j] * x[j]);
-
-								cout<<sum<<endl;
-							}
-
-							x[i]=D[i][n+1]-sum;
-							cout<<x[i]<<endl;
-
-						}
-
-
-					cout<<"\nend "<<endl;
-					printMatrix(D,n,l);
 
 					//tolerance=tolCheck(x, old, n);
 
@@ -205,6 +187,24 @@ do{
 					cout<<count++<<endl;
 
 				}while(count<n);
+
+x[n-1]=D[n-1][l-1];
+
+					//time to backsolve
+						 for(i=n-1; i>=0; i--)
+						    {
+						        sum=0;
+						        for(j=i+1; j<=n; j++)
+						        {
+						            sum=sum+D[i][j]*x[j];
+						        }
+						        x[i]=(D[i][n+1]-sum);
+						    }
+
+
+					cout<<"\nend "<<endl;
+					printMatrix(D,n,l);
+
 
 
 error= calcError(argc,argv,x,n);
