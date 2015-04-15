@@ -126,15 +126,17 @@ ifstream fs;
 
 				count=2;
 
+				for(i=0;i<n;i++){
+
+				 x[i]=0.0;
+
+					}
+
 			//	cout<<"test1"<<endl;
 do{
 
 
-	for(i=0;i<n;i++){
 
-	old[i]=x[i];
-
-		}
 //A[3][0]=888;
 
 						for(i=0;i<n;i++){
@@ -167,7 +169,23 @@ do{
 
 
 					//time to backsolve
+						for(i=n-1;i>=0;i--){
 
+
+							sum =0;
+
+							for(j=i+1;j<n;j++){
+
+
+								sum = sum + (D[i][j] * x[j]);
+
+								cout<<sum<<endl;
+							}
+
+							x[i]=D[i][n+1]-sum;
+							cout<<x[i]<<endl;
+
+						}
 
 
 					cout<<"\nend "<<endl;
