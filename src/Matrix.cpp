@@ -18,6 +18,7 @@
 #include "headers/jacobi.h"
 #include "headers/operations.h"
 #include "headers/gaussSeidel.h"
+#include "headers/LU.h"
 #include "headers/sor.h"
 #include "headers/ge.h"
 
@@ -67,7 +68,17 @@ int main(int argc,char* argv[]) {
 
 
 		//create random matrix
-//randomMatrix();
+cout<<"1. Use from file\n2. Autogenerate matrix"<<endl;
+cin>>choice;
+switch(choice){
+case 1:
+	cout<<"Matrix from file\n"<<endl;
+	break;
+case 2:
+	randomMatrix();
+}
+
+
 cout<<"chose solver"<<endl;
 cout<<"1. Jacobi\n2. Gauss Seidel\n3. SOR\n4. Gaussian Elimination\n5. L-U\n6. Bi-section\n7. Regula Falsi\n8. Newtons\n9. Exit"<<endl;
 cin>>choice;
@@ -102,6 +113,10 @@ case 4:
 
 	break;
 
+case 5:
+
+	cout<<"LU"<<endl;
+	LU(argc,argv);
 
 }
 

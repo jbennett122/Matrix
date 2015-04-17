@@ -22,7 +22,7 @@ using namespace std;
 void gaussianElim(int argc,char* argv[])
 {
 
-ifstream fs;
+	ifstream fs;
 	fs.open(argv[1]);
 
 	int i,j,k,l,m,n,count;
@@ -104,108 +104,57 @@ ifstream fs;
 					}
 
 
-		/*		rowSwap( A,  r1, r2);
-
-				cout<<"\nA matrix row swap "<<endl;
-							 	for (i=0; i < n; i++)
-									{
-									cout<<"|";
-										for(j=0;j<m;j++){
-
-										  cout<<" "<<setw(8)<<A[i][j]<<" ";
-										}
-									cout<<"|"<<endl;
-									}
-		*/
-
-				D=augMat(A,b,n,m);
+			D=augMat(A,b,n,m);
 
 				  l=m+1;
- printMatrix(D,n,l);
-				old = new double [n];
 
-				count=2;
-x= new double[n];
-				for(i=0;i<n;i++){
+		    printMatrix(D,n,l);
 
-				 x[i]=0.0;
-cout<<x[i]<<endl;
-					}
-
-			//	cout<<"test1"<<endl;
+		    old = new double [n];
 
 
+			for(i=0;i<n;++i){
+				max=0.0;
 
-
-//A[3][0]=888;
-
-						for(i=0;i<n;++i){
-							max=0.0;
-
-								//max=D[i][i];
-								cout<<"max is "<<max<<endl;
-							cout<<"Dii is  "<<D[1][1]<<endl;
-							 cout<<"i is "<<i<<endl;
-							//find row with largest largest value
-									for(k=i;k<n;k++)
-										{
-										if(D[k][i]>max){
-											max=D[k][i];
-											rowSwap(D,i,k);
+					//find row with largest largest value
+						for(k=i;k<n;k++)
+								{
+								if(D[k][i]>max){
+								max=D[k][i];
+								rowSwap(D,i,k);
 											//cout<<"swap"<<endl;
-											}
+									}
+							     }
+					rowDiv(D,max,i,l);
 
-								//		cout<<"Aij is  "<<A[i][j]<<endl;
-									//	cout<<"max after row "<<k<<" is "<<max<<endl;
-								        }
-							//		cout<<"Aii / max is  "<<A[i][i]<<" / "<<max<<endl;
-
-									rowDiv(D,max,i,l);
-									cout<<"row div done"<<endl;
-									printMatrix(D,n,l);
+					rowSubtraction(D,n,l,i);
 
 
-									cout<<"sub"<<endl;
-									rowSubtraction(D,n,l,i);
-									printMatrix(D,n,l);
-
-						}
-
-
-
-					//tolerance=tolCheck(x, old, n);
-
-
-
-					/*if(ending<tolerance){
-						cout<<ending<<endl;
-						cout<<"ending condition"<<endl;
 					}
-					else cout<<"not yet"<<endl;
-					*/
-					cout<<n<<endl;
-					cout<<count++<<endl;
 
+			x= new double[n];
 
-
-x[n-1]=D[n-1][l-1];
+							for(i=0;i<n;i++){
+							 x[i]=0.0;
+							 cout<<x[i]<<endl;
+							}
+ //this is x[2-1] = 1
 
 					//time to backsolve
 						 for(i=n-1; i>=0; i--)
 						    {
-						        sum=0;
-						        for(j=i+1; j<=n; j++)
-						        {
+							 sum=0;
+						//	 cout<<i<<i+1<<n<<endl;
+							// cout<<"B col "<<D[i][m]<<endl;
+						        for(j=i+1; j<n; j++)
+						        {	//cout<<"go"<<endl;
 						            sum=sum+D[i][j]*x[j];
-						        }
-						        x[i]=(D[i][n+1]-sum);
+						         }
+						        x[i]=D[i][m]-sum;
 						    }
-
 
 					cout<<"\nend "<<endl;
 					printMatrix(D,n,l);
-
-
 
 error= calcError(argc,argv,x,n);
 

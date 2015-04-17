@@ -317,7 +317,7 @@ double matrixSum(double *Matrix,int n){
 
 void rowSwap(double** A, const int& r1, const int& r2)
 {
-	cout<<"swap"<<endl;
+//	cout<<"swap"<<endl;
 
 	double* temp = A[r1];
 	A[r1] = A[r2];
@@ -392,7 +392,7 @@ void rowSubtraction(double** A,int n, int m,int r){
 		}
 
 		}
-		else cout<<"not done"<<endl;
+	//	else cout<<"not done"<<endl;
 	}
 
 
@@ -413,3 +413,27 @@ void rowDiv(double **A,double max,int c,int m){
 }
 
 
+
+static void OUTPUT(int n, double **A, int ISW)
+{
+   int I, J, FLAG;
+
+   cout<<"GENERAL LU FACTORIZATION"<<endl;
+   if (ISW == 0)
+      cout<<"The diagonal of L consists of all entries = 1.0"<<endl;
+   else
+      cout<<"The diagonal of U consists of all entries = 1.0"<<endl;
+   cout<<"Entries of L below diagonal and entries of U above/on diagonal"<<endl;
+   cout<<"- output by rows in overwrite format:"<<endl;
+   for (I=1; I<=n; I++) {
+      for (J=1; J<=n; J++) cout<<"  "<< A[I-1][J-1];
+      cout<<endl;
+   }
+}
+
+/* Absolute Value Function */
+static double absval(double val)
+{
+   if (val >= 0) return val;
+   else return -val;
+}

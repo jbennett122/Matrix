@@ -34,4 +34,8 @@ void rowDiv(double **A,double max,int c,int m);
 
 double** augMat(double** A,double *b,int n,int m);
 
+static double absval(double);
+
+static void OUTPUT(int n, double **A, int);
+
 #endif /* OPERATIONS_H_ */
