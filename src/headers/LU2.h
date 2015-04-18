@@ -9,6 +9,6 @@
 
 
 
-void LU(int argc,char* argv[]);
+void LU2(int argc,char* argv[]);
 
 

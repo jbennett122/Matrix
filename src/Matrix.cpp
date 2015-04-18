@@ -21,6 +21,8 @@
 #include "headers/LU.h"
 #include "headers/sor.h"
 #include "headers/ge.h"
+#include "headers/LU2.h"
+
 
 using namespace std;
 
@@ -69,15 +71,22 @@ int main(int argc,char* argv[]) {
 
 		//create random matrix
 cout<<"1. Use from file\n2. Autogenerate matrix"<<endl;
-cin>>choice;
+do{
+	cin>>choice;
+
 switch(choice){
 case 1:
 	cout<<"Matrix from file\n"<<endl;
 	break;
 case 2:
 	randomMatrix();
-}
 
+	break;
+default :
+
+	cout<<"Select Valid Option\n"<<endl;
+}
+}while(choice!=("1"||"2"));
 
 cout<<"chose solver"<<endl;
 cout<<"1. Jacobi\n2. Gauss Seidel\n3. SOR\n4. Gaussian Elimination\n5. L-U\n6. Bi-section\n7. Regula Falsi\n8. Newtons\n9. Exit"<<endl;
@@ -116,7 +125,9 @@ case 4:
 case 5:
 
 	cout<<"LU"<<endl;
-	LU(argc,argv);
+	LU2(argc,argv);
+
+	break;
 
 }
 

@@ -76,20 +76,22 @@ void matVecMultV(double **A,double *x,int n,int m){
 	double sum=0;
 	double *b;
 
+	rightHand.open("input9.txt",fstream::app);
+
 	b=new double [n];
 	for(int i=0;i<n;i++){
 	  sum=0.0;
 		for(int j=0;j<m;j++){
 			sum += A[i][j] * x[j];
 			//cout<<A[i][j]<<" * "<<x[j]<<endl;
-		//	cout<<"A["<<i<<"]"<<"["<<j<<"]"<<" * x["<<j<<"] :"<< sum<<endl;
+			cout<<"A["<<i<<"]"<<"["<<j<<"]"<<" * x["<<j<<"] :"<< sum<<endl;
 			b[i]=sum;}
 
 	}
 
-//cout<<"Finding right side"<<endl;
+cout<<"Finding right side"<<endl;
 
-	rightHand.open("input9.txt",fstream::app);
+
 
 	rightHand<<"\n";
 	for(int i=0;i<n;i++){
@@ -100,6 +102,8 @@ void matVecMultV(double **A,double *x,int n,int m){
 	}
 
 rightHand.close();
+
+delete []b;
 
 }
 
@@ -206,7 +210,7 @@ void randomMatrix(){
 //cout<<"test6"<<endl;
 
 	//RHS -- since moved to multMatVec function
-	/*inputFile<<"\n";
+inputFile<<"\n";
 	for(i=0;i<n;i++){
 
 		 v1 = rand() %200-100 ;
@@ -214,7 +218,7 @@ void randomMatrix(){
 
 
 	}
-	*/
+
 	inputFile.close();
 
 
@@ -231,7 +235,8 @@ x= new double [n];
 	solutionFile.close();
 
 //calculate Ax and append B to input9.txt file
-	matVecMultV( Matrix,x, n, m);
+	cout<<"make right side"<<endl;
+	//matVecMultV(Matrix,x, n, m);
 
 
 	delete []Matrix;

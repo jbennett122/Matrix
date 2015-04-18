@@ -33,7 +33,7 @@ using namespace std;
 
 static void OUTPUT(int n, double **A, int ISW)
 {
-   int I, J, FLAG;
+   int i, j, FLAG;
 
    cout<<"GENERAL LU FACTORIZATION"<<endl;
    if (ISW == 0)
@@ -42,11 +42,19 @@ static void OUTPUT(int n, double **A, int ISW)
       cout<<"The diagonal of U consists of all entries = 1.0"<<endl;
    cout<<"Entries of L below diagonal and entries of U above/on diagonal"<<endl;
    cout<<"- output by rows in overwrite format:"<<endl;
-   for (I=1; I<=n; I++) {
-      for (J=1; J<=n; J++) cout<<"  "<< A[I-1][J-1];
-      cout<<endl;
+   for (i=1; i<=n; i++) {
+
+	   cout<<"|";
+
+      for (j=1; j<=n; j++){
+    		cout<<" "<<setw(8)<<A[i-1][j-1];
+      }
+      cout<<"|"<<endl;
+      }
+
    }
-}
+
+
 
 /* Absolute Value Function */
 static double absval(double val)
@@ -57,7 +65,7 @@ static double absval(double val)
 
 
 
-void LU(int argc,char* argv[]){
+void LU2(int argc,char* argv[]){
 
 
 
@@ -146,7 +154,7 @@ void LU(int argc,char* argv[]){
                 /* ISW = 0 specifies that entris on diagonal of L are all ones */
 
       cout.setf(ios::fixed,ios::floatfield);
-      cout.precision(8);
+      cout.precision(2);
 
       for (i=1; i<=n; i++) x[i-1] = 1.0;
       /* STEP 1 */
@@ -219,6 +227,10 @@ void LU(int argc,char* argv[]){
       }
 
       if (!OK) cout<<"System has no unique solution"<<endl;
+
+error=0;
+      choices(count,n,x,error);
+
 
 }
 
