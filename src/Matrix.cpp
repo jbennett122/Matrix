@@ -18,6 +18,7 @@
 #include "headers/jacobi.h"
 #include "headers/operations.h"
 #include "headers/gaussSeidel.h"
+#include "headers/bisection.h"
 #include "headers/LU.h"
 #include "headers/sor.h"
 #include "headers/ge.h"
@@ -129,6 +130,11 @@ case 5:
 
 	break;
 
+case 6:
+
+	cout<<"Bisection"<<endl;
+	bisection();
+	break;
 }
 
 cin>>choice;
