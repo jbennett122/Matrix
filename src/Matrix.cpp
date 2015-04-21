@@ -19,6 +19,8 @@
 #include "headers/operations.h"
 #include "headers/gaussSeidel.h"
 #include "headers/bisection.h"
+#include "headers/rf.h"
+#include "headers/newtons.h"
 #include "headers/LU.h"
 #include "headers/sor.h"
 #include "headers/ge.h"
@@ -135,8 +137,23 @@ case 6:
 	cout<<"Bisection"<<endl;
 	bisection();
 	break;
-}
 
+
+case 7:
+
+	cout<<"Regula Falsi"<<endl;
+	rf();
+	break;
+
+case 8:
+
+	cout<<"Newtons"<<endl;
+	newtons();
+	break;
+
+default:
+	cout<<"Choose valid selection"<<endl;
+}
 cin>>choice;
 }while(choice!=9);
 

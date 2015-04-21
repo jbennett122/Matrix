@@ -28,7 +28,7 @@ using namespace std;
 float fx (float x)
 {
     float fx1;
-    fx1 = pow(x,3) + pow(x,2) - (3*x) - 3; // f(x) = x^3 - x^2 - 3x - 3;
+    fx1 = pow(x,3) + pow(x,2) - (3*x) - 3; // equation place holder
     return (fx1);
 }
 
@@ -54,12 +54,10 @@ void rf()
             break;
         }
 
-        x3 = x1 - (fx(x1)*((x1 - x2) / fx(x1) - fx(x2))); //This is formula of Regular false method
+        x3 = x1 - (fx(x1)*((x1 - x2) / fx(x1) - fx(x2)));
 
         cout <<"x1=" << x1 <<" | x2="<< x2 <<" | x3=" << x3 <<" | " << "  f(x1)=" << fx(x1) << " |  f(x2)=" << fx(x2) << " |  f(x3)=" << fx(x3) << endl << endl;
 
-        //float temp1 = f(x1);
-        //float temp2 = f(x3);
         if( fx(x1) * fx(x3) < 0 )
         {
             x2 = x3;

@@ -32,7 +32,11 @@ void rowSubtraction(double** A,int n, int m,int r);
 
 void rowDiv(double **A,double max,int c,int m);
 
+double dot(double* b, double* x, int n);
+
 double** augMat(double** A,double *b,int n,int m);
+
+double **ATrans(double** A, int n,  int m);
 
 static double absval(double);
 

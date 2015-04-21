@@ -417,13 +417,37 @@ void rowDiv(double **A,double max,int c,int m){
 
 }
 
+double** matMat(double** A, double** M, const int& r)
+{
+double** newMat;
+for(int i = 0; i < r; ++i)
+{
+for(int j = 0; j < r; ++j)
+{
+for(int k = 0; k < r; ++k)
+{
+newMat[i][j] += A[i][k] * M[k][j];
+}
+}
+}
+return newMat;
+}
 
+double dot(double* b, double* x, int n)
+{
+double s  = 0.0;
+for(int i = 0; i < n; ++i)
+{
+s =s+ b[i] * x[i];
+}
+return s;
+}
 
 static void OUTPUT(int n, double **A, int ISW)
 {
    int I, J, FLAG;
 
-   cout<<"GENERAL LU FACTORIZATION"<<endl;
+
    if (ISW == 0)
       cout<<"The diagonal of L consists of all entries = 1.0"<<endl;
    else
@@ -436,9 +460,32 @@ static void OUTPUT(int n, double **A, int ISW)
    }
 }
 
-/* Absolute Value Function */
 static double absval(double val)
 {
    if (val >= 0) return val;
    else return -val;
+}
+
+double **ATrans(double** A, int n,  int m)
+{
+double ** B;
+int i,j;
+B = new double *[n];
+		for (i=0; i < n; i++)
+		{
+			B[i]=new double [m];
+
+			for(j=0;j<m;j++){
+				B[i][j]=0.0;
+			}
+		}
+
+for(int i = 0; i < n; ++i)
+{
+for(int j = 0; j < m; ++j)
+{
+B[m][n] = A[n][m];
+}
+}
+return B;
 }
