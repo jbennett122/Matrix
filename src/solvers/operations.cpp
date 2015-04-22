@@ -68,6 +68,59 @@ void choices(int count,int n, double *x,double error){
 
 }
 
+void choices2(int count,double *x,int n){
+
+	int choice,i;
+	cout<<"\nChoose Option\n1.X solution\n2.Iterations \n3.Exit to Main Menu"<<endl;
+
+	choice=99999;
+
+
+
+	do{
+		cin>>choice;
+
+	switch(choice){
+
+	case 1:
+
+		cout<<"\nFinal X"<<endl;
+
+			for(i=0;i<n;i++){
+
+								cout<<" "<<setw(8)<<"x"<<i<<": "<<x[i]<<" ";
+
+						}
+
+			cout<<"\nChoose Option\n1.X solution\n2.Iterations\n3.Exit to Main Menu"<<endl;
+
+		break;
+
+	case 2:
+
+		cout<<"\nIterations: "<<count<<endl;
+
+		cout<<"\nChoose Option\n1.X solution\n2.Iterations\n3.Exit to Main Menu"<<endl;
+
+		break;
+
+	case 3:
+	 cout<<"\nExiting to Solver Menu\n"<<endl;
+
+	 	 break;
+
+	default:
+		cout<<"Choose a valid option"<<endl;
+
+		}
+
+
+	}while(choice!=3);
+	cout<<"1. Jacobi\n2. Gauss Seidel\n3. SOR\n4. Gaussian Elimination\n5. L-U\n6. Bi-section\n7. Regula Falsi\n8. Newtons\n9. Exit"<<endl;
+
+
+}
+
 void matVecMultV(double **A,double *x,int n,int m){
 
 	ofstream rightHand;
@@ -417,14 +470,14 @@ void rowDiv(double **A,double max,int c,int m){
 
 }
 
-double** matMat(double** A, double** M, const int& r)
+double** matMat(double** A, double** M, const int& n)
 {
 double** newMat;
-for(int i = 0; i < r; ++i)
+for(int i = 0; i < n; ++i)
 {
-for(int j = 0; j < r; ++j)
+for(int j = 0; j < n; ++j)
 {
-for(int k = 0; k < r; ++k)
+for(int k = 0; k < n; ++k)
 {
 newMat[i][j] += A[i][k] * M[k][j];
 }

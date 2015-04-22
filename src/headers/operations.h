@@ -10,6 +10,8 @@
 
 void choices(int count,int n, double *x,double error);
 
+void choices2(int count,double *x,int n);
+
 double matVecMultD(double **A,double *x,int n,int m);
 
 void matVecMultV(double **A,double *x,int n,int m);

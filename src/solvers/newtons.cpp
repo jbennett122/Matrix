@@ -35,19 +35,4 @@ void newtons(){
 	xi1=0.0;
 
 
-	cout<<"enter radicand:"<<endl;
-
-	cin>>r;
-	cout<<"Enter index: "<<endl;
-	cin>>i;
-
-	m=i-1;
-
-	while (abs(xi1-xi)>=e){
-
-		xi1=xi;
-		xi= xi + ((-1*pow(xi,i))+r)/(i*(pow(xi,m)));
-	}
-
-
 }
