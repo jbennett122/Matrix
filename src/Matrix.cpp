@@ -70,8 +70,8 @@ int main(int argc,char* argv[]) {
 
 
 		fs2.open(argv[2]);
-
-
+fs.close();
+//fs2.close();
 		//create random matrix
 cout<<"1. Use from file\n2. Autogenerate matrix"<<endl;
 do{
@@ -128,7 +128,8 @@ case 4:
 case 5:
 
 	cout<<"LU"<<endl;
-	LU2(argc,argv);
+	LU(argc,argv);
+//	LU2(argc,argv);
 
 	break;
 

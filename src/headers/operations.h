@@ -30,6 +30,8 @@ void rowSwap(double** A, const int& r1, const int& r2);
 
 void printMatrix(double** A,int n, int m);
 
+void printVector(double* x,int n);
+
 void rowSubtraction(double** A,int n, int m,int r);
 
 void rowDiv(double **A,double max,int c,int m);

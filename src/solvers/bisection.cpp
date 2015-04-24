@@ -79,6 +79,7 @@ float f (float x)
 {
     float fx1;
     //fx1 = pow(x,3) + pow(x,2) - (3*x) - 3;
-    fx1 = pow(x,2)  - 1;
+
+    fx1 = x + log(x); //pow(x,2)  - 1;
     return (fx1);
 }

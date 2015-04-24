@@ -113,7 +113,8 @@ void gaussSeidel(int argc,char* argv[])
 old = new double [n];
 
 count=0;
-do{
+tolerance=1.0;
+while(ending<tolerance){
 	count++;
 	for(i=0;i<n;i++){
 
@@ -154,7 +155,7 @@ do{
 	*/
 
 
-}while(ending<tolerance);
+}
 
 
 

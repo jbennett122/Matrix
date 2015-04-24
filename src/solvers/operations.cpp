@@ -398,6 +398,21 @@ cout<<"\n"<<endl;
 					}
 
 }
+void printVector(double* x,int n){
+	int i,k,j;
+cout<<"\n"<<endl;
+	for (i=0; i < n; i++)
+				{
+				cout<<"|";
+					//for(j=0;j<m;j++){
+
+				cout<<" "<<setw(8)<<x[i]<<" ";
+
+				cout<<"|"<<endl<<endl;
+					//}
+				}
+}
+
 
 double** augMat(double** A,double *b,int n,int m){
 

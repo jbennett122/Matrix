@@ -11,6 +11,7 @@
 #include <iomanip>
 #include "../headers/operations.h"
 #include <iomanip>
+#include <ostream>
 
 
 using namespace std;
@@ -18,20 +19,23 @@ using namespace std;
 
 void jacobi(int argc,char* argv[]){
 	ifstream fs;
+	//ifstream output;
+
 	fs.open(argv[1]);
+//	output.open(argv[2]);
 
 	int i,j,k,l,m,n,count,choice;
-	double nums,sum,tolerance;
+	double nums,tolerance;
 	double error;
 	count=0;
-
+	float sum,diff;
 	fs.clear();
 	fs>>n>>m;
 
 
-	double **A,**D,**C,*x,*old,*diff;	//A D matrix
+	double **A,**D,**C,*x,*old ;	//A D matrix
 	double b[n];	//Right hand side of Ax=b
-	double ending=1.0/10000.0;
+	double ending=1.0;
 
 	srand (time(NULL));
 
@@ -41,7 +45,7 @@ void jacobi(int argc,char* argv[]){
 		x=new double [n];
 		for(i=0;i<n;i++){
 
-			double v1 = rand() %200 -100;
+			double v1 = (rand() %200 -100)/1.00;
 
 			x[i]=v1;
 		}
@@ -103,13 +107,21 @@ void jacobi(int argc,char* argv[]){
 old = new double [n];
 
 count=0;
-do{
+tolerance=.00001;
+
+
+diff=2;
+
+while(diff>tolerance){
 	count++;
+
+
 	for(i=0;i<n;i++){
 
 		old[i]=x[i];
 
 			}
+
 
 //go row by row do matrix mult and matrix subtraction
 	for (i=0; i < n; i++)
@@ -126,11 +138,14 @@ do{
 
 						//new x vector
 				x[i]=(b[i]-sum)/(A[i][i]);
-				//cout<<x[i]<<endl;
+			//	cout<<"new X: "<<x[i]<<endl;
 
 		}
 
-	tolerance=tolCheck(x, old, n);
+	//printVector(x,n);
+
+
+	diff=tolCheck(x, old, n); //differnce 2 norm of old and new x
 
 
 
@@ -141,15 +156,42 @@ do{
 		else cout<<"not yet"<<endl;
 		*/
 
+}
+
+ofstream output;
+output.open("new.txt");
+
+float temp2;
+
+int resize = sqrt(n);
 
 
-}while(ending<tolerance);
+count =0;
+for(i=0;i<resize;i++){
+	cout<<"i "<<i<<endl;
+		for(j=0;j<resize;j++){
+			//k=j*n+i;
 
+
+		output<<x[count]<<" ";
+		count++;
+
+		}
+		output<<" \n";
+		//cout<<i<<endl;
+		cout<<count<<endl;
+}
+output.close();
+
+//matVecMultV(A,x, n, m);
+
+//cout<<"after loops"<<endl;
 error= calcError(argc,argv,x,n);
 
 choices(count,n,x,error);
 
-
+delete []A;
+delete []x;
 }
 
 

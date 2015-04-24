@@ -9,7 +9,7 @@
 #define LU_H_
 
 
-
+void LU(int argc,char* argv[]);
 
 
 #endif /* LU_H_ */
