@@ -24,6 +24,7 @@
 #include "headers/LU.h"
 #include "headers/sor.h"
 #include "headers/ge.h"
+#include "headers/ge2.h"
 #include "headers/LU2.h"
 
 
@@ -121,14 +122,14 @@ case 3:
 case 4:
 
 	cout<<"Gaussian Elimination"<<endl;
-	gaussianElim(argc,argv);
+	ge2(argc,argv);
 
 	break;
 
 case 5:
 
 	cout<<"LU"<<endl;
-	LU(argc,argv);
+	//LU(argc,argv);
 //	LU2(argc,argv);
 
 	break;

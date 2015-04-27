@@ -25,17 +25,18 @@ void sor(int argc,char* argv[]){
 	fs.open(argv[1]);
 
 	int i,j,k,l,m,n,count,choice;
-	double nums,sum,tolerance,L,U,omega;
+	double nums, L,U,omega;
 	double error;
 	count=0;
-	omega=1.4;
+	omega=1.15;
 	fs.clear();
 	fs>>n>>m;
 
+	float sum,diff;
 
-	double **A,**D,**C,*x,*old,*diff;	//A D matrix
+	double **A,**D,**C,*x,*old ;	//A D matrix
 	double b[n];	//Right hand side of Ax=b
-	double ending=1.0/10000.0;
+	double tolerance=.00001;
 
 	srand (time(NULL));
 
@@ -70,7 +71,7 @@ void sor(int argc,char* argv[]){
 
 				}
 			}
-
+/*
 			cout<<"\nA matrix "<<endl;
 		 	for (i=0; i < n; i++)
 				{
@@ -82,9 +83,9 @@ void sor(int argc,char* argv[]){
 				cout<<"|"<<endl;
 				}
 
-
+*/
 			//cout<<"entries in A matrix: "<<count<<endl;
-			cout<<"\nRHS"<<endl;
+	//		cout<<"\nRHS"<<endl;
 
 			count =0;
 
@@ -95,21 +96,23 @@ void sor(int argc,char* argv[]){
 				count++;
 				}
 
-			for (i=0; i < n; i++)
+/*			for (i=0; i < n; i++)
 					{
 					cout<<"|";
 						cout<<" "<<setw(8)<<b[i]<<" ";
 					cout<<"|"<<endl;
 					}
-
+*/
 //	cout<<"entries in b vector: "<<count<<endl;
 
 old = new double [n];
 
 count=0;
-tolerance=1.0;
-while(ending<tolerance){
+
+diff=2;
+while(diff>tolerance){
 	count++;
+
 
 	for(i=0;i<n;i++){
 
@@ -135,7 +138,7 @@ while(ending<tolerance){
 
 						x[i] = (1-omega)*x[i] + ( (omega/A[i][i]) * sum );
 			}
-	tolerance=tolCheck(x, old, n);
+	diff=tolCheck(x, old, n);
 
 
 
@@ -151,6 +154,8 @@ while(ending<tolerance){
 }
 
 error= calcError(argc,argv,x,n);
+
+outPutXSoltion(x,n);
 
 choices(count,n,x,error);
 

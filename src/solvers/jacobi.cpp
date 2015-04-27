@@ -107,7 +107,7 @@ void jacobi(int argc,char* argv[]){
 old = new double [n];
 
 count=0;
-tolerance=.00001;
+tolerance=1.e-15;
 
 
 diff=2;
@@ -157,18 +157,18 @@ while(diff>tolerance){
 		*/
 
 }
-
+/*
 ofstream output;
-output.open("new.txt");
+output.open("1c_Jacobi_data_3.txt");
 
-float temp2;
+
 
 int resize = sqrt(n);
 
 
 count =0;
 for(i=0;i<resize;i++){
-	cout<<"i "<<i<<endl;
+	//cout<<"i "<<i<<endl;
 		for(j=0;j<resize;j++){
 			//k=j*n+i;
 
@@ -179,9 +179,14 @@ for(i=0;i<resize;i++){
 		}
 		output<<" \n";
 		//cout<<i<<endl;
-		cout<<count<<endl;
+		//cout<<count<<endl;
 }
 output.close();
+*/
+
+
+outPutXSoltion(x,n);
+
 
 //matVecMultV(A,x, n, m);
 

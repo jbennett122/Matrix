@@ -161,6 +161,8 @@ while(ending<tolerance){
 
 error= calcError(argc,argv,x,n);
 
+outPutXSoltion(x,n);
+
 choices(count,n,x,error);
 
 

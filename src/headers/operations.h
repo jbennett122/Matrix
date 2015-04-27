@@ -14,6 +14,8 @@ void choices2(int count,double *x,int n);
 
 double matVecMultD(double **A,double *x,int n,int m);
 
+void outPutXSoltion(double * x,int n);
+
 void matVecMultV(double **A,double *x,int n,int m);
 
 double tolCheck(double *x,double *old,int n);
@@ -42,8 +44,18 @@ double** augMat(double** A,double *b,int n,int m);
 
 double **ATrans(double** A, int n,  int m);
 
-static double absval(double);
+double absval(double);
 
-static void OUTPUT(int n, double **A, int);
+void OUTPUT(int n, double **A, int);
+
+double pivot(double **A ,double *b,int n, int i);
+
+void triangle(double **A ,double *b,int n);
+
+double dotProduct(double *u, double *v, int k1,int k2);
+
+void backSubstit(double **A, double *b, double *x,int n);
+
+void gaussian(double **A, double *b, double *x,int n);
 
 #endif /* OPERATIONS_H_ */

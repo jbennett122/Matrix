@@ -26,50 +26,103 @@
 
 using namespace std;
 
-float fN(float x ){
-	float fOx;
+float fX(float x ){
+	float fx;
+	//fx = pow(x,3) - x - 2;
 
-	fOx = 4*x - cos(x);
 
-return fOx;
+	fx=  pow(x,4)- 2*(pow(x,3))- 9*(pow(x,2))+ 8;
+
+
+	//fx=pow(x,3)- 7*pow(x,2)+ 8*x -3;
+
+return (fx);
 }
 
-float fPN(float x){
-
+float fPX(float x){
 	float dfdx;
 
-	dfdx = 4 + sin(x);
+//	dfdx = 3*(pow(x,2)) - 1;
 
-	return dfdx;
+	//X4 + 2x3 -9x2 -2x +8 = 0
+	//4x3 + 6x2 -18x  - 2
+	dfdx=4*(pow(x,3))+ 6*(pow(x,2))- 18*x -2;
+
+   // dfdx = 3* pow(x,2) -14*x +8 ;
+
+	return (dfdx);
 }
 
 void newtons(){
-  double r,rnew;
+	 float a,newA;
+	    double *x;
+	    int count = 0;
+	    int iter,i,n,choice;
+	    float tolerance=1.e-5;
+	    ofstream output;
+	       	string fileName;
 
-  double tolerance;
-  int i,n;
+
+	       	//name of output file
+	       	output.open("question8.txt");
+
 
   cout << "Enter initial starting point: ";
-  cin >> rnew;
-  cout<<"Max number of iterations: "<<endl;
-  cin>>n;
+  cin >> a;
 
-  tolerance=1.0/10000.0;
+  newA=0.0;
 
-  for(i = 0; i < n; i = i + 1){
-    r = rnew;
+  while(abs(a-newA) > tolerance){
 
-    rnew = r - fN(r)/fPN(r);
 
-    cout<<rnew<<endl;
-    // check for convergence and quit if done
-    if(abs(r-rnew) < tolerance){
-      cout << "Root is " << rnew << " within "<< tolerance << "\n";
+    a = newA;
 
-      exit(0);
-    }
+     newA = a - fX(a)/fPX(a);
+
+     output<<"\nx: "<<newA<<
+
+count++;
   }
 
-  cout << "Failed to converge after " << n << " iterations.\n";
-  exit(1);
+  cout<<"\nChoose Option\n1.X solution\n2.Iterations \n3.Exit to Main Menu"<<endl;
+
+  	choice=99999;
+output.close();
+
+	do{
+		cin>>choice;
+
+	switch(choice){
+
+	case 1:
+		cout<<"X: "<<newA<<endl;
+			cout<<"\nChoose Option\n1.X solution\n2.Iterations\n3.Exit to Main Menu"<<endl;
+
+		break;
+
+	case 2:
+
+		cout<<"\nIterations: "<<count<<endl;
+
+		cout<<"\nChoose Option\n1.X solution\n2.Iterations\n3.Exit to Main Menu"<<endl;
+
+		break;
+
+	case 3:
+	 cout<<"\nExiting to Solver Menu\n"<<endl;
+
+	 	 break;
+
+	default:
+		cout<<"Choose a valid option"<<endl;
+
+		}
+
+
+	}while(choice!=3);
+	cout<<"1. Jacobi\n2. Gauss Seidel\n3. SOR\n4. Gaussian Elimination\n5. L-U\n6. Bi-section\n7. Regula Falsi\n8. Newtons\n9. Exit"<<endl;
+
 }
+
+
+

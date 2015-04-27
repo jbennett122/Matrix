@@ -15,6 +15,49 @@
 
 using namespace std;
 
+void outPutXSoltion(double * x,int n){
+
+
+	ofstream output;
+	string fileName;
+
+
+
+	//cout<<"Name output file in txt format."<<endl;
+	//getline(cin,fileName);
+
+	//output.open(fileName.c_str(),ios::in);
+
+
+
+	//name of output file
+	output.open("question5.txt");
+
+int count,i,j;
+
+	int resize = sqrt(n);
+
+
+	count =0;
+	for(i=0;i<resize;i++){
+		//cout<<"i "<<i<<endl;
+			for(j=0;j<resize;j++){
+				//k=j*n+i;
+
+
+			output<<x[count]<<" ";
+			count++;
+
+			}
+			output<<" \n";
+			//cout<<i<<endl;
+			//cout<<count<<endl;
+	}
+	output.close();
+
+
+}
+
 void choices(int count,int n, double *x,double error){
 
 	int choice,i;
@@ -398,6 +441,7 @@ cout<<"\n"<<endl;
 					}
 
 }
+
 void printVector(double* x,int n){
 	int i,k,j;
 cout<<"\n"<<endl;
@@ -412,7 +456,6 @@ cout<<"\n"<<endl;
 					//}
 				}
 }
-
 
 double** augMat(double** A,double *b,int n,int m){
 
@@ -511,49 +554,113 @@ s =s+ b[i] * x[i];
 return s;
 }
 
-static void OUTPUT(int n, double **A, int ISW)
-{
-   int I, J, FLAG;
+double **ATrans(double** A, int n,  int m){
+	double ** B;
+	int i,j;
+	B = new double *[n];
+			for (i=0; i < n; i++)
+			{
+				B[i]=new double [m];
 
-
-   if (ISW == 0)
-      cout<<"The diagonal of L consists of all entries = 1.0"<<endl;
-   else
-      cout<<"The diagonal of U consists of all entries = 1.0"<<endl;
-   cout<<"Entries of L below diagonal and entries of U above/on diagonal"<<endl;
-   cout<<"- output by rows in overwrite format:"<<endl;
-   for (I=1; I<=n; I++) {
-      for (J=1; J<=n; J++) cout<<"  "<< A[I-1][J-1];
-      cout<<endl;
-   }
-}
-
-static double absval(double val)
-{
-   if (val >= 0) return val;
-   else return -val;
-}
-
-double **ATrans(double** A, int n,  int m)
-{
-double ** B;
-int i,j;
-B = new double *[n];
-		for (i=0; i < n; i++)
-		{
-			B[i]=new double [m];
-
-			for(j=0;j<m;j++){
-				B[i][j]=0.0;
+				for(j=0;j<m;j++){
+					B[i][j]=0.0;
+				}
 			}
-		}
 
-for(int i = 0; i < n; ++i)
+	for(int i = 0; i < n; ++i)
+	{
+	for(int j = 0; j < m; ++j)
+	{
+	B[m][n] = A[n][m];
+	}
+	}
+	return B;
+	}
+
+double pivot(double **A ,double *b,int n, int i)
+ {
+
+     int loc=i;
+     double max=0;
+
+     for(int k=i; k<n; k+=1)
+     {
+         double current = fabs(A[k][i]);
+         if(current>max)
+         {
+             max=current;
+             loc=k;
+         }
+     }
+     if(loc>i)
+     {
+         double temp;
+         for(int L=0; L<n; L+=1)
+         {
+             temp = A[i][L];
+             A[i][L]= A[loc][L];
+             A[loc][L]= temp;
+         }
+         double temp2 = b[loc];
+         b[i]=b[loc];
+         b[loc]=temp2;
+     }
+     return A[i][i];
+ }
+
+void triangle(double **A ,double *b,int n)
 {
-for(int j = 0; j < m; ++j)
+	float tolerance;
+	tolerance = 1.e-5;
+
+
+    for(int i=0; i<n-1; i++)
+    {
+        double diag = pivot(A,b,n,i);
+
+
+
+        if(fabs(diag)<tolerance)
+        {
+            cout<<"zero determint"<<endl;
+            return;
+        }
+        for(int j=i+1; j<n; j+=1)
+        {
+            double D = A[j][i]/diag;
+            for(int k = i+1; k<n; k+=1)
+            {
+
+            	A[j][k]= A[j][k] - D*A[i][k];
+            }
+
+            b[j]=b[j] - D*b[i];
+        }
+    }
+}
+
+double dotProduct(double *u, double *v, int k1,int k2)
 {
-B[m][n] = A[n][m];
+    double sum = 0;
+    for(int i = k1; i <= k2; i += 1)
+    {
+        sum= sum + u[i] * v[i];
+    }
+    return sum;
 }
+
+void backSubstit(double **A, double *b, double *x,int n)
+{
+
+    for(int i =  n-1; i >= 0; i -= 1)
+    {
+        x[i] = (b[i] - dotProduct(A[i], x, i + 1,  n-1))/ A[i][i];
+    }
 }
-return B;
+
+void gaussian(double **A, double *b, double *x,int n)
+{
+    triangle(A, b,n);
+    backSubstit(A, b, x,n);
 }
+

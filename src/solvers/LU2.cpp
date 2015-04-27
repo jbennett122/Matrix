@@ -31,7 +31,7 @@ using namespace std;
 
 
 
-static void OUTPUT(int n, double **A, int ISW)
+  void OUTPUT(int n, double **A, int ISW)
 {
    int i, j, FLAG;
 
@@ -57,7 +57,8 @@ static void OUTPUT(int n, double **A, int ISW)
 
 
 /* Absolute Value Function */
-static double absval(double val)
+
+  double absval(double val)
 {
    if (val >= 0) return val;
    else return -val;

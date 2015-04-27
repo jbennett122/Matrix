@@ -26,15 +26,16 @@ void gaussianElim(int argc,char* argv[])
 	fs.open(argv[1]);
 
 	int i,j,k,l,m,n,count;
-	double nums,sum,tolerance,max;
+	double nums, tolerance,max;
 	double error;
 	count=0;
 
 	fs.clear();
 	fs>>n>>m;
 
+	float sum,diff;
 
-	double **A,**D,**C,*x,*old,*diff;	//A D matrix
+	double **A,**D,**C,*x,*old;	//A D matrix
 	double b[n];	//Right hand side of Ax=b
 	double ending=1.0/10000.0;
 
@@ -72,7 +73,7 @@ void gaussianElim(int argc,char* argv[])
 				}
 			}
 
-			cout<<"\nA matrix "<<endl;
+		/*	cout<<"\nA matrix "<<endl;
 		 	for (i=0; i < n; i++)
 				{
 				cout<<"|";
@@ -85,8 +86,8 @@ void gaussianElim(int argc,char* argv[])
 
 
 			//cout<<"entries in A matrix: "<<count<<endl;
-			cout<<"\nRHS"<<endl;
-
+			//cout<<"\nRHS"<<endl;
+*/
 			count =0;
 
 		for(i=0;i<n;i++){
@@ -96,14 +97,14 @@ void gaussianElim(int argc,char* argv[])
 				count++;
 				}
 
-			for (i=0; i < n; i++)
+			/*for (i=0; i < n; i++)
 					{
 					cout<<"|";
 						cout<<" "<<setw(8)<<b[i]<<" ";
 					cout<<"|"<<endl;
 					}
 
-
+*/
 			D=augMat(A,b,n,m);
 
 				  l=m+1;

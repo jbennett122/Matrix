@@ -11,5 +11,5 @@
 
 void bisection();
 
-float f (float x);
+//float f (float x);
 #endif /* BISECTION_H_ */

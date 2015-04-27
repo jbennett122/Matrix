@@ -28,55 +28,74 @@ using namespace std;
 float fx (float x)
 {
     float fx1;
-    fx1 = pow(x,3) + pow(x,2) - (3*x) - 3; // equation place holder
+   // fx1 = pow(x-4,2) -8;  //test
+   // fx1 = pow(x,3) - x - 2;
+   fx1=x + log(x);
+
     return (fx1);
 }
 
 void rf()
 {
-    float x1,x2,x3;
+    float a,b,mid;
     double *x;
     int count = 0;
     int iter,n,choice;
+    float tolerance=1.e-5;
 
-    cout <<"Enter x1 = ";
-    cin >> x1;
-    cout <<"Enter x2 = ";
-    cin >> x2;
-    cout <<"Enter number of iterations = ";
-    cin >> iter;
+	ofstream output2;
+   	string fileName;
 
-//  int fx1 = (x1^3) + (x1^2) - (3x1) - 3;
-//  int fx2 = (x2^3) + (x2^2) - (3x2) - 3;
-    do
-    {
-        if(count == iter)
+
+   	//name of output file
+   	output2.open("question7.txt");
+
+
+
+
+    cout <<"Enter L = ";
+    cin >> a;
+    cout <<"Enter R = ";
+    cin >> b;
+
+
+    while((abs(fx(mid)) > tolerance))
+       {
+      // mid = b - (   fx(b) * ((b - a) / fx(b) - fx(a)));
+    	//mid = a + (b-a)*(- fx(a)) / (fx(b) - fx(a));
+
+//mid = b - (fx(b)*(b-a)/fx(b)-fx(a));
+
+
+		mid = ((a * fx(b)) - (b*fx(a)))/(fx(b) -fx(a));
+
+
+       // cout <<"a=" <<a<<" | b="<<b<<" | mid=" <<mid<<" | " << "  f(a)=" << fx(a) << " |  f(b)=" << fx(b) << " |  f(mid)=" << fx(mid) << endl << endl;
+
+        if(  fx(mid)*fx(a)  < 0 )
         {
-            break;
-        }
-
-        x3 = x1 - (fx(x1)*((x1 - x2) / fx(x1) - fx(x2)));
-
-      //  cout <<"x1=" << x1 <<" | x2="<< x2 <<" | x3=" << x3 <<" | " << "  f(x1)=" << fx(x1) << " |  f(x2)=" << fx(x2) << " |  f(x3)=" << fx(x3) << endl << endl;
-
-        if( fx(x1) * fx(x3) < 0 )
-        {
-            x2 = x3;
+           b=mid;
+           cout<<"new b "<<b<<endl;
         }
         else
-        {
-            x1 = x3;
-        }
+        	{
+        	a=mid;
+        	cout<<"new a "<<a<<endl;
+        	}
+
+              cout<<"X is : "<<mid<<endl;
+              output2<<"\nx: "<<mid<<" F(x): "<<fx(mid);
+
         count++;
     }
-    while ( abs(x1 - x2) < 0.0000001 || fx(x3) == 0 );
+
 
 
     cout<<"\nChoose Option\n1.X solution\n2.Iterations \n3.Exit to Main Menu"<<endl;
 
     	choice=99999;
 
-
+output2.close();
 	do{
 		cin>>choice;
 
@@ -84,10 +103,8 @@ void rf()
 
 	case 1:
 
-		cout<<"\nFinal X"<<endl;
+		cout<<"\nFinal X: "<<mid<<endl;
 
-
-	    cout <<"x1=" << x1 <<" | x2="<< x2 <<" | x3=" << x3 <<" | " << "  f(x1)=" << fx(x1) << " |  f(x2)=" << fx(x2) << " |  f(x3)=" << fx(x3) << endl << endl;
 
 
 			cout<<"\nChoose Option\n1.X solution\n2.Iterations\n3.Exit to Main Menu"<<endl;
